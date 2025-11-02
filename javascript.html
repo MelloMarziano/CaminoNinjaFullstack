@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo: JavaScript | Guía de Aprendizaje</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container"><a class="navbar-brand" href="index.html">Guía de Aprendizaje</a></div>
+  </nav>
+  <main class="py-5">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h1 class="h3 mb-0"><i class="fa-brands fa-square-js text-warning me-2"></i>Módulo: JavaScript</h1>
+        <a class="btn btn-outline-primary" href="index.html"><i class="fa-solid fa-arrow-left me-1"></i>Volver a la introducción</a>
+      </div>
+
+      <p class="text-muted mb-4">Guía completa de JavaScript: sintaxis moderna (ES6+), tipos, funciones, scope/closures, objetos y clases, arrays y métodos avanzados, asincronía (Promises/async-await), DOM, eventos, módulos, fetch/APIs, almacenamiento (localStorage), testing básico y buenas prácticas. Incluye ejercicios y test.</p>
+
+      <div class="mb-4">
+        <span class="text-muted me-2">Índice:</span>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#sintaxis" class="btn btn-sm btn-outline-secondary">Sintaxis y tipos</a>
+          <a href="#funciones" class="btn btn-sm btn-outline-secondary">Funciones y scope</a>
+          <a href="#objetos" class="btn btn-sm btn-outline-secondary">Objetos y clases</a>
+          <a href="#arrays" class="btn btn-sm btn-outline-secondary">Arrays y métodos</a>
+          <a href="#asincronia" class="btn btn-sm btn-outline-secondary">Asincronía</a>
+          <a href="#dom" class="btn btn-sm btn-outline-secondary">DOM y eventos</a>
+          <a href="#modulos" class="btn btn-sm btn-outline-secondary">Módulos</a>
+          <a href="#fetch" class="btn btn-sm btn-outline-secondary">Fetch y APIs</a>
+          <a href="#storage" class="btn btn-sm btn-outline-secondary">localStorage</a>
+          <a href="#buenas" class="btn btn-sm btn-outline-secondary">Buenas prácticas</a>
+          <a href="#ejercicios" class="btn btn-sm btn-outline-secondary">Ejercicios</a>
+          <a href="#test" class="btn btn-sm btn-outline-secondary">Test</a>
+        </div>
+      </div>
+
+      <section id="sintaxis" class="mb-5">
+        <h2 class="h5">Sintaxis moderna y tipos</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>// Declaraciones
+const PI = 3.14; let count = 0; var legacy = 1; // evita var
+
+// Tipos primitivos
+typeof 42 // number
+typeof 'hi' // string
+typeof true // boolean
+typeof null // object (quirk)
+typeof undefined // undefined
+typeof Symbol('x') // symbol
+typeof 10n // bigint
+
+// Template strings
+const name = 'Ada';
+console.log(`Hola ${name}!`);
+
+// Destructuring
+const user = { id: 1, name: 'Ada' };
+const { id, name: firstName } = user;
+
+// Spread/Rest
+const arr = [1,2,3];
+const arr2 = [...arr, 4];
+function sum(...nums) { return nums.reduce((a,b)=>a+b,0); }</code></pre>
+        </div></div>
+      </section>
+
+      <section id="funciones" class="mb-5">
+        <h2 class="h5">Funciones, scope y closures</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>// Función vs arrow
+function inc(x) { return x + 1; }
+const inc2 = x => x + 1;
+
+// Scope y closure
+function makeCounter() {
+  let count = 0;
+  return () => ++count; // closure captura count
+}
+const counter = makeCounter();
+counter(); // 1
+counter(); // 2</code></pre>
+        </div></div>
+      </section>
+
+      <section id="objetos" class="mb-5">
+        <h2 class="h5">Objetos, prototipos y clases</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>// Clase
+class Person {
+  constructor(name) { this.name = name; }
+  greet() { return `Hola ${this.name}`; }
+}
+class Student extends Person {
+  constructor(name, cohort) { super(name); this.cohort = cohort; }
+}
+const s = new Student('Ada', 'FS-01');
+s.greet(); // Hola Ada</code></pre>
+        </div></div>
+      </section>
+
+      <section id="arrays" class="mb-5">
+        <h2 class="h5">Arrays y métodos avanzados</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>const nums = [1,2,3,4];
+nums.map(n => n*2); // [2,4,6,8]
+nums.filter(n => n%2===0); // [2,4]
+nums.reduce((acc,n) => acc+n, 0); // 10
+nums.find(n => n&gt;2); // 3
+nums.some(n => n&gt;3); // true
+nums.every(n => n&gt;0); // true</code></pre>
+        </div></div>
+      </section>
+
+      <section id="asincronia" class="mb-5">
+        <h2 class="h5">Asincronía: Promises y async/await</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>// Promesa
+const delay = ms => new Promise(res => setTimeout(res, ms));
+delay(500).then(() => console.log('done'));
+
+// async/await
+async function run() {
+  await delay(500);
+  console.log('awaited');
+}
+run();
+
+// Manejo de errores
+async function load() {
+  try { /* ... */ }
+  catch (err) { console.error(err); }
+  finally { /* limpieza */ }
+}</code></pre>
+        </div></div>
+      </section>
+
+      <section id="dom" class="mb-5">
+        <h2 class="h5">DOM y eventos</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>const btn = document.querySelector('#save');
+btn.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log('clicked');
+});
+
+// Manipulación
+const list = document.querySelector('#list');
+const li = document.createElement('li');
+li.textContent = 'Item';
+list.appendChild(li);</code></pre>
+        </div></div>
+      </section>
+
+      <section id="modulos" class="mb-5">
+        <h2 class="h5">Módulos ES</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>// utils.js
+export const add = (a,b) => a+b;
+
+// app.js
+import { add } from './utils.js';
+console.log(add(2,3));</code></pre>
+        </div></div>
+      </section>
+
+      <section id="fetch" class="mb-5">
+        <h2 class="h5">Fetch y consumo de APIs</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>async function getUsers() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
+}
+getUsers().then(users => console.log(users)).catch(console.error);</code></pre>
+        </div></div>
+      </section>
+
+      <section id="storage" class="mb-5">
+        <h2 class="h5">Almacenamiento: localStorage</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>localStorage.setItem('token', 'abc123');
+const token = localStorage.getItem('token');
+localStorage.removeItem('token');</code></pre>
+        </div></div>
+      </section>
+
+      <section id="buenas" class="mb-5">
+        <h2 class="h5">Buenas prácticas</h2>
+        <ul>
+          <li>Evita variables globales; usa módulos y scope limitado.</li>
+          <li>Prefiere funciones puras y nombres descriptivos.</li>
+          <li>Maneja errores en async/await con try/catch.</li>
+          <li>Usa linters (ESLint) y formateadores (Prettier) en proyectos reales.</li>
+        </ul>
+      </section>
+
+      <section id="ejercicios" class="mb-5">
+        <h2 class="h5">Ejercicios</h2>
+        <ol>
+          <li>Implementa un contador con closure y botones +/− en el DOM.</li>
+          <li>Consume una API pública con fetch y renderiza una lista.</li>
+          <li>Crea una función utilitaria para map/filter/reduce y pruébala.</li>
+          <li>Guarda preferencias (tema) en localStorage y aplícalas al cargar.</li>
+        </ol>
+      </section>
+
+      <section id="test" class="mb-5">
+        <h2 class="h5">Test de evaluación (10 preguntas)</h2>
+        <form id="jsTest" class="vstack gap-3">
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">1) ¿Qué palabra clave evita redeclarar variables en el mismo scope?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1a" value="a" required><label class="form-check-label" for="q1a">var</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1b" value="b"><label class="form-check-label" for="q1b">let</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1c" value="c"><label class="form-check-label" for="q1c">const</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1d" value="d"><label class="form-check-label" for="q1d">function</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">2) ¿Qué devuelve <code>typeof null</code>?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2a" value="a" required><label class="form-check-label" for="q2a">null</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2b" value="b"><label class="form-check-label" for="q2b">object</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2c" value="c"><label class="form-check-label" for="q2c">undefined</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2d" value="d"><label class="form-check-label" for="q2d">string</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">3) Un closure es…</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3a" value="a" required><label class="form-check-label" for="q3a">Una función que captura su entorno léxico</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3b" value="b"><label class="form-check-label" for="q3b">Una clase que extiende otra</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3c" value="c"><label class="form-check-label" for="q3c">Una promesa resuelta</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3d" value="d"><label class="form-check-label" for="q3d">Un módulo importado</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">4) ¿Qué método transforma un array sin mutarlo?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4a" value="a" required><label class="form-check-label" for="q4a">map</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4b" value="b"><label class="form-check-label" for="q4b">push</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4c" value="c"><label class="form-check-label" for="q4c">sort</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4d" value="d"><label class="form-check-label" for="q4d">splice</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">5) ¿Qué palabra clave define una clase?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5a" value="a" required><label class="form-check-label" for="q5a">object</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5b" value="b"><label class="form-check-label" for="q5b">class</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5c" value="c"><label class="form-check-label" for="q5c">prototype</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5d" value="d"><label class="form-check-label" for="q5d">extends</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">6) ¿Cómo esperas una promesa en una función?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6a" value="a" required><label class="form-check-label" for="q6a">await dentro de una función async</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6b" value="b"><label class="form-check-label" for="q6b">then sin más</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6c" value="c"><label class="form-check-label" for="q6c">sleep()</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6d" value="d"><label class="form-check-label" for="q6d">De forma síncrona</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">7) ¿Qué función crea un elemento de DOM?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7a" value="a" required><label class="form-check-label" for="q7a">document.createElement</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7b" value="b"><label class="form-check-label" for="q7b">document.newNode</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7c" value="c"><label class="form-check-label" for="q7c">dom.add</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7d" value="d"><label class="form-check-label" for="q7d">element.create</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">8) ¿Qué sentencia captura errores?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8a" value="a" required><label class="form-check-label" for="q8a">try/catch</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8b" value="b"><label class="form-check-label" for="q8b">if/else</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8c" value="c"><label class="form-check-label" for="q8c">switch</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8d" value="d"><label class="form-check-label" for="q8d">for</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">9) ¿Cómo importas una función de otro módulo ES?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9a" value="a" required><label class="form-check-label" for="q9a">require()</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9b" value="b"><label class="form-check-label" for="q9b">import { fn } from './mod.js'</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9c" value="c"><label class="form-check-label" for="q9c">include('./mod.js')</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q9" id="q9d" value="d"><label class="form-check-label" for="q9d">load('./mod.js')</label></div>
+          </div></div>
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">10) ¿Qué método obtiene datos JSON con fetch?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10a" value="a" required><label class="form-check-label" for="q10a">res.text()</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10b" value="b"><label class="form-check-label" for="q10b">res.json()</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10c" value="c"><label class="form-check-label" for="q10c">res.data()</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q10" id="q10d" value="d"><label class="form-check-label" for="q10d">res.get()</label></div>
+          </div></div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-1"></i>Calificar</button>
+            <button type="button" id="resetJsTest" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left me-1"></i>Reiniciar respuestas</button>
+          </div>
+          <div id="jsTestResult" class="alert d-none mt-3" role="alert"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('jsTest');
+      const resultEl = document.getElementById('jsTestResult');
+      const resetBtn = document.getElementById('resetJsTest');
+      if (!form) return;
+      const answers = { q1: 'c', q2: 'b', q3: 'a', q4: 'a', q5: 'b', q6: 'a', q7: 'a', q8: 'a', q9: 'b', q10: 'b' };
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const total = Object.keys(answers).length;
+        let correct = 0;
+        for (const key of Object.keys(answers)) {
+          const sel = form.querySelector(`input[name="${key}"]:checked`);
+          if (sel && sel.value === answers[key]) correct++;
+        }
+        const percent = Math.round((correct / total) * 100);
+        resultEl.classList.remove('d-none', 'alert-success', 'alert-warning');
+        resultEl.classList.add(percent >= 70 ? 'alert-success' : 'alert-warning');
+        resultEl.innerHTML = `<strong>Resultado:</strong> ${correct} / ${total} (${percent}%).`;
+        const record = { module: 'JavaScript', slug: 'javascript', correct, total, percent, timestamp: new Date().toISOString() };
+        const storeKey = 'moduleResults';
+        const data = JSON.parse(localStorage.getItem(storeKey) || '{}');
+        data['javascript'] = record;
+        localStorage.setItem(storeKey, JSON.stringify(data));
+      });
+      resetBtn?.addEventListener('click', function () {
+        form.reset();
+        resultEl.classList.add('d-none');
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

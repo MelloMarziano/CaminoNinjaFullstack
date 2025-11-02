@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo: HTML | Guía de Aprendizaje</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container"><a class="navbar-brand" href="index.html">Guía de Aprendizaje</a></div>
+  </nav>
+  <main class="py-5">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h1 class="h3 mb-0"><i class="fa-brands fa-html5 text-danger me-2"></i>Módulo: HTML</h1>
+        <a class="btn btn-outline-primary" href="index.html"><i class="fa-solid fa-arrow-left me-1"></i>Volver a la introducción</a>
+      </div>
+
+      <p class="text-muted mb-4">De 0 a experto en HTML: estructura del documento, semántica, accesibilidad, formularios, multimedia, SEO y mejores prácticas. Incluye ejemplos y ejercicios prácticos.</p>
+
+      <div class="mb-4">
+        <span class="text-muted me-2">Índice:</span>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#fundamentos" class="btn btn-sm btn-outline-secondary">Fundamentos</a>
+          <a href="#guia" class="btn btn-sm btn-outline-secondary">Guía rápida</a>
+          <a href="#estructura" class="btn btn-sm btn-outline-secondary">Estructura semántica</a>
+          <a href="#principios" class="btn btn-sm btn-outline-secondary">Principios base</a>
+          <a href="#texto" class="btn btn-sm btn-outline-secondary">Texto</a>
+          <a href="#enlaces" class="btn btn-sm btn-outline-secondary">Enlaces</a>
+          <a href="#listas" class="btn btn-sm btn-outline-secondary">Listas</a>
+          <a href="#imagenes" class="btn btn-sm btn-outline-secondary">Imágenes</a>
+          <a href="#tablas" class="btn btn-sm btn-outline-secondary">Tablas</a>
+          <a href="#formularios" class="btn btn-sm btn-outline-secondary">Formularios</a>
+          <a href="#multimedia" class="btn btn-sm btn-outline-secondary">Multimedia</a>
+          <a href="#accesibilidad" class="btn btn-sm btn-outline-secondary">Accesibilidad</a>
+          <a href="#seo" class="btn btn-sm btn-outline-secondary">SEO y metadatos</a>
+          <a href="#favicons" class="btn btn-sm btn-outline-secondary">Favicons/manifest</a>
+          <a href="#primeros-pasos" class="btn btn-sm btn-outline-secondary">Primeros pasos</a>
+          <a href="#html5-apis" class="btn btn-sm btn-outline-secondary">HTML5 APIs</a>
+          <a href="#microdatos" class="btn btn-sm btn-outline-secondary">Microdatos/JSON-LD</a>
+          <a href="#buenas-practicas" class="btn btn-sm btn-outline-secondary">Buenas prácticas</a>
+          <a href="#por-que" class="btn btn-sm btn-outline-secondary">Por qué y cuándo</a>
+          <a href="#tradeoffs" class="btn btn-sm btn-outline-secondary">Decisiones y trade-offs</a>
+          <a href="#antipatrones" class="btn btn-sm btn-outline-secondary">Antipatrones</a>
+          <a href="#validacion" class="btn btn-sm btn-outline-secondary">Validación</a>
+          <a href="#ejercicios" class="btn btn-sm btn-outline-secondary">Ejercicios</a>
+        </div>
+      </div>
+
+      <section id="fundamentos" class="mb-5">
+        <h2 class="h5"><i class="fa-solid fa-cube me-2"></i>Fundamentos</h2>
+        <p class="text-muted">Estructura mínima de un documento y elementos clave del <code>&lt;head&gt;</code> y <code>&lt;body&gt;</code>.</p>
+        <div class="card bg-light">
+          <div class="card-body">
+            <pre class="mb-0"><code>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Título de la página&lt;/title&gt;
+  &lt;meta name="description" content="Descripción concisa (50–160 caracteres)"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main&gt;Contenido principal&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+        </div>
+        <ul class="mt-3">
+          <li>Usa <code>lang</code> correcto para i18n y SEO.</li>
+          <li>Define <code>charset</code> UTF-8 y <code>viewport</code> para responsive.</li>
+          <li>Elige un único <code>&lt;h1&gt;</code> por página, con jerarquía lógica de títulos.</li>
+        </ul>
+      </section>
+
+      <section id="guia" class="mb-5">
+        <h2 class="h5"><i class="fa-solid fa-compass me-2"></i>Guía rápida de decisiones</h2>
+        <p class="text-muted">Mapa rápido para elegir etiquetas y patrones correctos.</p>
+        <div class="row gy-3">
+          <div class="col-12 col-lg-6">
+            <div class="card bg-light"><div class="card-body">
+              <h3 class="h6"><i class="fa-solid fa-map-signs me-2"></i>Qué usar y cuándo</h3>
+              <ul class="mb-0">
+                <li>Contenido principal único → <code>&lt;main&gt;</code>. Complementos → <code>&lt;aside&gt;</code>.</li>
+                <li>Bloques temáticos → <code>&lt;section&gt;</code> con encabezado. Contenido autocontenido → <code>&lt;article&gt;</code>.</li>
+                <li>Acciones que navegan → <code>&lt;a href&gt;</code>. Acciones en la página → <code>&lt;button&gt;</code>.</li>
+                <li>Lista desordenada → <code>&lt;ul&gt;</code>. Ordenada → <code>&lt;ol&gt;</code>. Definiciones → <code>&lt;dl&gt;</code>.</li>
+                <li>Imagen con leyenda → <code>&lt;figure&gt;+&lt;figcaption&gt;</code>. Responsive → <code>&lt;picture&gt;</code>.</li>
+                <li>Datos tabulares → <code>&lt;table&gt;</code> con <code>&lt;thead&gt;&lt;tbody&gt;&lt;tfoot&gt;</code>, nunca para layout.</li>
+                <li>Formularios accesibles → <code>&lt;form&gt;</code> + <code>&lt;label for&gt;</code> + tipos de <code>&lt;input&gt;</code>.</li>
+              </ul>
+            </div></div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card bg-light"><div class="card-body">
+              <h3 class="h6"><i class="fa-solid fa-lightbulb me-2"></i>Buenas prácticas rápidas</h3>
+              <ul class="mb-0">
+                <li>Usa un único <code>&lt;h1&gt;</code> global; evita saltos de niveles.</li>
+                <li>Proporciona <code>alt</code> descriptivo en imágenes informativas.</li>
+                <li>Evita <code>target="_blank"</code> sin <code>rel="noopener noreferrer"</code>.</li>
+                <li>En formularios, asocia cada control con su <code>&lt;label&gt;</code>.</li>
+                <li>Prefiere componentes nativos: <code>&lt;dialog&gt;</code>, validación HTML, inputs específicos.</li>
+                <li>Declara <code>lang</code> en <code>&lt;html&gt;</code> y <code>charset</code> en <code>&lt;head&gt;</code>.</li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="estructura" class="mb-5">
+        <h2 class="h5"><i class="fa-solid fa-layer-group me-2"></i>Estructura semántica</h2>
+        <p class="text-muted">HTML semántico mejora accesibilidad, SEO y mantenibilidad.</p>
+        <div class="card bg-light">
+          <div class="card-body">
+            <pre class="mb-0"><code>&lt;header&gt;Cabecera global&lt;/header&gt;
+&lt;nav&gt;Navegación&lt;/nav&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;header&gt;&lt;h1&gt;Título del artículo&lt;/h1&gt;&lt;/header&gt;
+    &lt;section&gt;Sección 1&lt;/section&gt;
+    &lt;section&gt;Sección 2&lt;/section&gt;
+    &lt;footer&gt;Metadatos&lt;/footer&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;Contenido relacionado&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;Pie de página&lt;/footer&gt;</code></pre>
+          </div>
+        </div>
+        <div class="row gy-3 mt-3">
+          <div class="col-12 col-lg-6">
+            <div class="card bg-light"><div class="card-body">
+              <h3 class="h6"><i class="fa-solid fa-sitemap me-2"></i>Landmarks y reglas clave</h3>
+              <ul class="mb-0">
+                <li><strong>header</strong> (banner) y <strong>footer</strong> (contentinfo) pueden existir a nivel global y dentro de <code>article</code>.</li>
+                <li><strong>nav</strong> (navigation) agrupa enlaces principales; evita usarlo para pequeños grupos de links contextuales.</li>
+                <li><strong>main</strong> debe aparecer una vez por página y contener el contenido principal.</li>
+                <li><strong>aside</strong> (complementary) es información tangencial al contenido principal.</li>
+                <li><strong>section</strong> agrupa contenido temático y debe llevar encabezado; <strong>article</strong> es autocontenido y “compartible”.</li>
+                <li>Mantén una <strong>jerarquía de encabezados</strong> consistente. El algoritmo de outline de HTML5 no se usa ampliamente: ajusta manualmente niveles (<code>h1</code> global, <code>h2</code> en secciones, etc.).</li>
+              </ul>
+            </div></div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card bg-light"><div class="card-body">
+              <h3 class="h6"><i class="fa-solid fa-diagram-project me-2"></i>Plantillas semánticas</h3>
+              <pre class="mb-2"><code>&lt;!-- Esqueleto de página --&gt;
+&lt;header&gt;&lt;h1&gt;Marca&lt;/h1&gt;&lt;/header&gt;
+&lt;nav aria-label="Principal"&gt;...&lt;/nav&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;header&gt;
+      &lt;h2&gt;Título&lt;/h2&gt;
+      &lt;time datetime="2025-01-01"&gt;1 Ene 2025&lt;/time&gt;
+    &lt;/header&gt;
+    &lt;section&gt;&lt;h3&gt;Tema A&lt;/h3&gt;...&lt;/section&gt;
+    &lt;section&gt;&lt;h3&gt;Tema B&lt;/h3&gt;...&lt;/section&gt;
+    &lt;footer&gt;&lt;address&gt;Autor&lt;/address&gt;&lt;/footer&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;Relacionado&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;© Sitio&lt;/footer&gt;</code></pre>
+              <pre class="mb-0"><code>&lt;!-- Figura semántica --&gt;
+&lt;figure&gt;
+  &lt;img src="img.jpg" alt="Descripción"&gt;
+  &lt;figcaption&gt;Leyenda de la imagen&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+            </div></div>
+          </div>
+        </div>
+        <div class="card bg-light mt-3"><div class="card-body">
+          <h3 class="h6"><i class="fa-solid fa-list-check me-2"></i>Checklist rápido</h3>
+          <ul class="mb-0">
+            <li>¿Hay un único <code>&lt;main&gt;</code> y los landmarks están claros?</li>
+            <li>¿Cada <code>&lt;section&gt;</code> tiene encabezado y sentido temático?</li>
+            <li>¿Lo que es “compartible” está en <code>&lt;article&gt;</code> con su propio encabezado?</li>
+            <li>¿Contenido tangencial está en <code>&lt;aside&gt;</code> y no en el flujo principal?</li>
+            <li>¿Las figuras usan <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> y las fechas <code>&lt;time datetime&gt;</code>?</li>
+            <li>¿La jerarquía de títulos es consistente (sin saltos ilógicos)?</li>
+          </ul>
+        </div></div>
+      </section>
+
+      <section id="texto" class="mb-5">
+        <h2 class="h5"><i class="fa-solid fa-pen-nib me-2"></i>Texto</h2>
+        <p class="text-muted">Etiquetas de texto comunes.</p>
+        <div class="row gy-3">
+          <div class="col-12 col-lg-6">
+            <div class="card bg-light"><div class="card-body">
+              <pre class="mb-0"><code>&lt;h1&gt;Encabezado 1&lt;/h1&gt;
+&lt;p&gt;Párrafo con &lt;strong&gt;énfasis fuerte&lt;/strong&gt; y &lt;em&gt;énfasis&lt;/em&gt;.&lt;/p&gt;
+&lt;blockquote&gt;Cita en bloque&lt;/blockquote&gt;
+&lt;hr&gt; Separador
+&lt;small&gt;Texto secundario&lt;/small&gt; &lt;mark&gt;Resaltado&lt;/mark&gt;
+&lt;sup&gt;super&lt;/sup&gt; y &lt;sub&gt;sub&lt;/sub&gt;
+&lt;code&gt;fragmento de código&lt;/code&gt;</code></pre>
+            </div></div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <ul class="mb-0">
+              <li>Usa <code>&lt;strong&gt;</code> y <code>&lt;em&gt;</code> con intención semántica.</li>
+              <li>Mantén una jerarquía consistente de <code>&lt;h1..h6&gt;</code>.</li>
+              <li><code>&lt;pre&gt;</code> conserva espacios; <code>&lt;code&gt;</code> para inline.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="principios" class="mb-5">
+        <h2 class="h5">Principios base de HTML</h2>
+        <p class="text-muted">Flujo de documento, elementos block/inline y estructura del &lt;head&gt;.</p>
+        <div class="row gy-3">
+          <div class="col-12 col-lg-6">
+            <div class="card bg-light"><div class="card-body">
+              <h3 class="h6">Flujo y tipos de elementos</h3>
+              <ul>
+                <li><strong>Bloque</strong>: inicia en línea nueva y agrupa contenido (p, div, section, article, header, footer).</li>
+                <li><strong>En línea</strong>: fluye dentro del texto (a, span, strong, em, img, code).</li>
+                <li>Elige semántica antes que apariencia: usa la etiqueta que describe mejor el significado.</li>
+              </ul>
+              <pre class="mb-0"><code>&lt;p&gt;Texto con &lt;strong&gt;énfasis&lt;/strong&gt; e &lt;a href="#"&gt;enlace&lt;/a&gt;.&lt;/p&gt;</code></pre>
+            </div></div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card bg-light"><div class="card-body">
+              <h3 class="h6">Estructura del &lt;head&gt;</h3>
+              <pre class="mb-2"><code>&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Título&lt;/title&gt;
+  &lt;meta name="description" content="Resumen de la página"&gt;
+  &lt;link rel="canonical" href="https://ejemplo.com/pagina"&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;meta property="og:title" content="Título social"&gt;
+  &lt;meta property="og:type" content="website"&gt;
+&lt;/head&gt;</code></pre>
+              <ul class="mb-0">
+                <li><code>viewport</code> para responsive; <code>description</code> para SEO.</li>
+                <li><code>canonical</code> evita contenido duplicado; Open Graph mejora el compartir.</li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="primeros-pasos" class="mb-5">
+        <h2 class="h5">Primeros pasos: tu primera página</h2>
+        <p class="text-muted">Estructura mínima, enlazar CSS y JavaScript, y organización de archivos.</p>
+        <div class="card bg-light"><div class="card-body">
+          <h3 class="h6">Esqueleto y enlaces</h3>
+          <pre class="mb-2"><code>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;Mi sitio&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/css/styles.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main&gt;Hola mundo&lt;/main&gt;
+    &lt;script type="module" src="/js/app.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <h3 class="h6">Estructura de carpetas sugerida</h3>
+          <pre class="mb-0"><code>proyecto/
+├─ index.html
+├─ css/
+│  └─ styles.css
+└─ js/
+   └─ app.js</code></pre>
+        </div></div>
+        <div class="card bg-light mt-3"><div class="card-body">
+          <h3 class="h6">Consejos de inicio</h3>
+          <ul class="mb-0">
+            <li>Usa <code>type="module"</code> para aprovechar ES Modules y evitar globals.</li>
+            <li>Rutas relativas: <code>./</code> dentro de carpetas; absolutas desde la raíz: <code>/css/styles.css</code>.</li>
+            <li>Valida el HTML y usa el inspector del navegador para revisar landmarks.</li>
+          </ul>
+        </div></div>
+      </section>
+
+      <section id="enlaces" class="mb-5">
+        <h2 class="h5">Enlaces</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;a href="/ruta"&gt;Relativo&lt;/a&gt;
+&lt;a href="https://ejemplo.com" target="_blank" rel="noopener"&gt;Externo&lt;/a&gt;
+&lt;a href="mailto:contacto@ejemplo.com"&gt;Email&lt;/a&gt;  &lt;a href="tel:+34123456789"&gt;Teléfono&lt;/a&gt;
+&lt;a href="/archivo.pdf" download&gt;Descargar&lt;/a&gt;</code></pre>
+        </div></div>
+      </section>
+
+      <section id="listas" class="mb-5">
+        <h2 class="h5">Listas</h2>
+        <div class="row gy-3">
+          <div class="col-12 col-lg-6"><div class="card bg-light"><div class="card-body">
+            <pre class="mb-0"><code>&lt;ul&gt;&lt;li&gt;Elemento&lt;/li&gt;&lt;/ul&gt;
+&lt;ol&gt;&lt;li&gt;Ordenado&lt;/li&gt;&lt;/ol&gt;
+&lt;dl&gt;
+  &lt;dt&gt;Término&lt;/dt&gt;
+  &lt;dd&gt;Definición&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+          </div></div></div>
+          <div class="col-12 col-lg-6">
+            <ul class="mb-0"><li>Usa listas para contenido estructurado, no para layout.</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="imagenes" class="mb-5">
+        <h2 class="h5">Imágenes</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;figure&gt;
+  &lt;img src="foto.jpg" alt="Descripción significativa" width="600" height="400" loading="lazy"
+       srcset="foto-600.jpg 600w, foto-1200.jpg 1200w" sizes="(max-width: 600px) 100vw, 600px"&gt;
+  &lt;figcaption&gt;Leyenda de la imagen&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+        </div></div>
+        <ul class="mt-3"><li>Siempre incluye <code>alt</code>. Usa <code>loading="lazy"</code> para rendimiento.</li></ul>
+      </section>
+
+      <section id="tablas" class="mb-5">
+        <h2 class="h5">Tablas</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;table&gt;
+  &lt;caption&gt;Ventas trimestrales&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th scope="col"&gt;Q1&lt;/th&gt;&lt;th scope="col"&gt;Q2&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;&lt;th scope="row"&gt;Producto A&lt;/th&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;120&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;tfoot&gt;&lt;tr&gt;&lt;td colspan="3"&gt;Total&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+        </div></div>
+        <ul class="mt-3"><li>Usa <code>scope</code> en <code>&lt;th&gt;</code> y <code>&lt;caption&gt;</code> para accesibilidad.</li></ul>
+      </section>
+
+      <section id="formularios" class="mb-5">
+        <h2 class="h5">Formularios</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;form action="/signup" method="post" autocomplete="on"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Registro&lt;/legend&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input id="email" name="email" type="email" required inputmode="email"&gt;
+
+    &lt;label for="pass"&gt;Contraseña&lt;/label&gt;
+    &lt;input id="pass" name="pass" type="password" minlength="8" required&gt;
+
+    &lt;label for="age"&gt;Edad&lt;/label&gt;
+    &lt;input id="age" name="age" type="number" min="0" max="120" step="1"&gt;
+
+    &lt;label for="country"&gt;País&lt;/label&gt;
+    &lt;select id="country" name="country" required&gt;
+      &lt;option value="" disabled selected&gt;Selecciona…&lt;/option&gt;
+      &lt;option&gt;España&lt;/option&gt; &lt;option&gt;México&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;label for="bio"&gt;Bio&lt;/label&gt;
+    &lt;textarea id="bio" name="bio" rows="3" maxlength="200"&gt;&lt;/textarea&gt;
+  &lt;/fieldset&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div></div>
+        <ul class="mt-3">
+          <li>Usa <code>&lt;label&gt;</code> con <code>for</code> y <code>id</code> coincidentes.</li>
+          <li>Valida con atributos nativos (<code>required</code>, <code>pattern</code>, <code>min/max</code>).</li>
+          <li>Mejora accesibilidad con <code>aria-describedby</code>, mensajes de error claros.</li>
+        </ul>
+      </section>
+
+      <section id="multimedia" class="mb-5">
+        <h2 class="h5">Multimedia</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;video controls width="640" poster="preview.jpg"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;track kind="subtitles" src="subs.vtt" srclang="es" label="Español" default&gt;
+  Tu navegador no soporta video HTML5.
+&lt;/video&gt;
+
+&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+        </div></div>
+      </section>
+
+      <section id="accesibilidad" class="mb-5">
+        <h2 class="h5">Accesibilidad (A11y)</h2>
+        <ul>
+          <li>Texto alternativo significativo en imágenes (<code>alt</code>).</li>
+          <li>Orden lógico de encabezados y foco; evita tab traps.</li>
+          <li>Contraste suficiente; navegación por teclado; roles ARIA cuando sea necesario.</li>
+          <li>Usa <code>&lt;label&gt;</code>, <code>&lt;legend&gt;</code>, y descripciones accesibles para formularios.</li>
+        </ul>
+      </section>
+
+      <section id="seo" class="mb-5">
+        <h2 class="h5">SEO y metadatos</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;head&gt;
+  &lt;title&gt;Título único y descriptivo&lt;/title&gt;
+  &lt;meta name="description" content="Resumen de la página"&gt;
+  &lt;link rel="canonical" href="https://sitio.com/pagina"&gt;
+  &lt;meta name="robots" content="index,follow"&gt;
+  &lt;meta property="og:title" content="Título para redes"&gt;
+  &lt;meta property="og:description" content="Descripción social"&gt;
+  &lt;meta property="og:type" content="website"&gt;
+  &lt;meta property="og:url" content="https://sitio.com/pagina"&gt;
+  &lt;meta property="og:image" content="https://sitio.com/imagen.jpg"&gt;
+  &lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;/head&gt;</code></pre>
+        </div></div>
+      </section>
+
+      <section id="favicons" class="mb-5">
+        <h2 class="h5">Favicons y manifest</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;link rel="icon" href="/favicon.ico" sizes="any"&gt;
+&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;
+&lt;meta name="theme-color" content="#0d6efd"&gt;
+&lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+        </div></div>
+      </section>
+
+      <section id="html5-apis" class="mb-5">
+        <h2 class="h5">HTML5 APIs útiles</h2>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;details open&gt;
+  &lt;summary&gt;Ver más&lt;/summary&gt;
+  Contenido ocultable.
+&lt;/details&gt;
+
+&lt;dialog open&gt;Diálogo modal nativo&lt;/dialog&gt;
+&lt;progress value="60" max="100"&gt;&lt;/progress&gt; &lt;meter min="0" max="100" value="40"&gt;&lt;/meter&gt;
+&lt;time datetime="2025-11-02"&gt;2 Nov 2025&lt;/time&gt;</code></pre>
+        </div></div>
+      </section>
+
+      <section id="microdatos" class="mb-5">
+        <h2 class="h5">Microdatos y JSON-LD (Schema.org)</h2>
+        <p class="text-muted">Preferir JSON-LD en el <code>&lt;head&gt;</code> para datos estructurados.</p>
+        <div class="card bg-light"><div class="card-body">
+          <pre class="mb-0"><code>&lt;script type="application/ld+json"&gt;{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Guía HTML",
+  "datePublished": "2025-11-02",
+  "author": {"@type": "Person", "name": "Tú"}
+}&lt;/script&gt;</code></pre>
+        </div></div>
+      </section>
+
+      <section id="buenas-practicas" class="mb-5">
+        <h2 class="h5">Buenas prácticas</h2>
+        <ul>
+          <li>Semántica primero, estilos después; evita el “div soup”.</li>
+          <li>Contenido accesible, navegable por teclado y con textos alternativos.</li>
+          <li>Optimiza imágenes; usa <code>srcset</code>, <code>sizes</code> y <code>loading="lazy"</code>.</li>
+          <li>Head limpio: títulos únicos, descripciones, canonical, metadatos sociales.</li>
+          <li>Mantén estructura consistente y valida tu HTML con herramientas.</li>
+        </ul>
+      </section>
+
+      <section id="por-que" class="mb-5">
+        <h2 class="h5">Por qué y cuándo usar cada elemento</h2>
+        <ul>
+          <li><strong>Etiquetas semánticas (header/nav/main/section/article):</strong> comunican significado a navegadores, lectores de pantalla y motores de búsqueda; mejoran accesibilidad y SEO. Úsalas para describir estructura real del contenido.</li>
+          <li><strong>Enlace vs botón:</strong> usa <code>&lt;a&gt;</code> para navegación (cambia de URL) y <code>&lt;button&gt;</code> para acciones en la misma página (enviar formulario, abrir modal). Esto mantiene expectativas y accesibilidad.</li>
+          <li><strong>Imágenes responsivas:</strong> <code>&lt;picture&gt;</code>/<code>srcset</code> sirven imágenes óptimas por dispositivo; reduce tiempo de carga y consumo de datos.</li>
+          <li><strong>Tablas solo para datos tabulares:</strong> preservan relaciones fila/columna para tecnología asistiva; evita usarlas para layout.</li>
+          <li><strong>Formularios nativos:</strong> validación y semántica integradas (<code>required</code>, <code>type="email"</code>), mejores para a11y y dispositivos móviles; complementa con JS en casos avanzados.</li>
+          <li><strong>ARIA con criterio:</strong> primero elementos nativos; usa roles/atributos ARIA solo cuando no exista semántica equivalente (p. ej., patrones complejos de widgets).</li>
+          <li><strong>Metadatos SEO:</strong> <code>&lt;title&gt;</code>, <code>description</code>, <code>canonical</code> y datos estructurados ayudan a la indexación y a la vista previa en redes.</li>
+          <li><strong>JSON-LD sobre Microdata:</strong> separar datos estructurados del marcado visual facilita mantenimiento y es recomendado por motores de búsqueda.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs" class="mb-5">
+        <h2 class="h5">Decisiones y trade-offs</h2>
+        <ul>
+          <li><strong>Un solo <code>h1</code> por página vs múltiples:</strong> un <code>h1</code> simple mejora consistencia y SEO; múltiples <code>h1</code> son válidos en HTML5 por sección, pero pueden confundir herramientas. Opta por un <code>h1</code> global y jerarquía clara.</li>
+          <li><strong><code>target="_blank"</code>:</strong> mejora UX para enlaces externos, pero conlleva riesgos; usa <code>rel="noopener noreferrer"</code> para seguridad.</li>
+          <li><strong><code>dialog</code> nativo vs modal personalizado:</strong> <code>&lt;dialog&gt;</code> aporta foco y accesibilidad built‑in; los modales custom requieren manejo cuidadoso de foco/teclado.</li>
+          <li><strong>Validación nativa vs JS:</strong> la nativa es rápida y accesible; JS aporta control y mensajes personalizados, pero añade complejidad. Combínalas responsablemente.</li>
+          <li><strong>Contenido embebido (<code>iframe</code>):</strong> útil para sandboxing, pero puede afectar performance y accesibilidad; limítalo y define títulos/contexto.</li>
+          <li><strong><code>loading="lazy"</code>:</strong> reduce costs de carga, pero puede retrasar imágenes críticas; aplica con criterio y provee dimensiones para evitar CLS.</li>
+        </ul>
+      </section>
+
+      <section id="antipatrones" class="mb-5">
+        <h2 class="h5">Antipatrones y errores comunes</h2>
+        <ul>
+          <li>“Div soup”: estructura sin semántica; dificulta a11y y mantenimiento.</li>
+          <li>Usar tablas para layout en vez de CSS; rompe semántica y responsividad.</li>
+          <li>Enlaces sin <code>href</code> o botones usados para navegar entre páginas.</li>
+          <li>Imágenes sin <code>alt</code> significativo o con <code>alt</code> decorativo incorrecto.</li>
+          <li>Omitir <code>lang</code> en <code>&lt;html&gt;</code> y desorden en jerarquía de encabezados.</li>
+          <li>Abusar de ARIA cuando existe un elemento nativo que cubre el caso.</li>
+          <li>Inyectar HTML sin sanitizar (riesgos de XSS) o abusar de <code>&lt;br&gt;</code> para espaciar.</li>
+        </ul>
+      </section>
+
+      <section id="validacion" class="mb-5">
+        <h2 class="h5">Validación y herramientas</h2>
+        <ul>
+          <li>W3C Validator: valida sintaxis y semántica.</li>
+          <li>Lighthouse: accesibilidad, SEO y performance.</li>
+          <li>Emmet: snippets para escribir HTML más rápido.</li>
+        </ul>
+      </section>
+
+      <section id="ejercicios" class="mb-5">
+        <h2 class="h5">Ejercicios</h2>
+        <ol>
+          <li>Estructura una página con <code>header</code>, <code>nav</code>, <code>main</code>, <code>article</code>, <code>aside</code> y <code>footer</code>.</li>
+          <li>Crea un formulario accesible de registro con validación nativa y ayuda contextual.</li>
+          <li>Inserta una imagen con <code>figure</code> y <code>figcaption</code>, optimizada con <code>srcset</code>.</li>
+          <li>Agrega metadatos SEO y JSON-LD para un artículo de blog.</li>
+          <li>Usa <code>details/summary</code> y un <code>dialog</code> para contenido colapsable y modal.</li>
+        </ol>
+      </section>
+
+      <div class="alert alert-info">
+        Consejo: Practica con proyectos pequeños (landing, blog, portfolio) y valida siempre accesibilidad y semántica; esto te llevará a “master” rápidamente.
+      </div>
+
+      <section id="teoria" class="mb-5">
+        <h2 class="h5">Teoría esencial</h2>
+        <p>HTML es un lenguaje de marcado orientado a describir la estructura y significado del contenido. La capa de presentación (CSS) y la capa de comportamiento (JS) deben mantenerse separadas para mejorar mantenibilidad y accesibilidad. La semántica adecuada ayuda a los agentes de usuario (navegadores, lectores de pantalla, bots) a interpretar correctamente la información.</p>
+        <ul>
+          <li>El DOM es el modelo de objetos del documento que el navegador construye a partir del HTML y que JS puede manipular.</li>
+          <li>La semántica define qué es cada parte del contenido (artículo, navegación, sección), no cómo se ve.</li>
+          <li>Accesibilidad (A11y) es parte integral del HTML: etiquetas, roles y estructura permiten que más personas usen tu sitio.</li>
+          <li>Performance: usa recursos optimizados (imágenes responsivas, lazy loading) y un <code>&lt;head&gt;</code> limpio.</li>
+        </ul>
+      </section>
+
+      <section id="test" class="mb-5">
+        <h2 class="h5">Test de evaluación (8 preguntas)</h2>
+        <p class="text-muted">Responde y califica tu conocimiento. Se guardará el resultado en tu navegador.</p>
+        <form id="htmlTest" class="vstack gap-3">
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">1) ¿Para qué sirve <code>&lt;!doctype html&gt;</code>?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1a" value="a" required><label class="form-check-label" for="q1a">Cargar hojas de estilo CSS</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1b" value="b"><label class="form-check-label" for="q1b">Indicar al navegador que use el estándar HTML5</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1c" value="c"><label class="form-check-label" for="q1c">Definir metadatos Open Graph</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1d" value="d"><label class="form-check-label" for="q1d">Activar modo oscuro</label></div>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">2) ¿Cuál es el contenedor semántico del contenido principal?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2a" value="a" required><label class="form-check-label" for="q2a">&lt;section&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2b" value="b"><label class="form-check-label" for="q2b">&lt;main&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2c" value="c"><label class="form-check-label" for="q2c">&lt;article&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2d" value="d"><label class="form-check-label" for="q2d">&lt;div&gt;</label></div>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">3) En <code>&lt;img&gt;</code>, ¿qué atributo es obligatorio por accesibilidad?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3a" value="a" required><label class="form-check-label" for="q3a">title</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3b" value="b"><label class="form-check-label" for="q3b">loading</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3c" value="c"><label class="form-check-label" for="q3c">alt</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3d" value="d"><label class="form-check-label" for="q3d">sizes</label></div>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">4) En un enlace externo con <code>target="_blank"</code>, ¿qué añadir por seguridad?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4a" value="a" required><label class="form-check-label" for="q4a">hreflang</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4b" value="b"><label class="form-check-label" for="q4b">referrerpolicy="no-referrer"</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4c" value="c"><label class="form-check-label" for="q4c">download</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4d" value="d"><label class="form-check-label" for="q4d">rel="noopener"</label></div>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">5) ¿Qué formato se recomienda para datos estructurados SEO?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5a" value="a" required><label class="form-check-label" for="q5a">Microdata dentro del &lt;body&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5b" value="b"><label class="form-check-label" for="q5b">JSON-LD en el &lt;head&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5c" value="c"><label class="form-check-label" for="q5c">RDFa dentro de &lt;figcaption&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5d" value="d"><label class="form-check-label" for="q5d">script type="application/json" en &lt;body&gt;</label></div>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">6) Para asociar una etiqueta y un campo en formularios, ¿qué usar?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6a" value="a" required><label class="form-check-label" for="q6a">placeholder</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6b" value="b"><label class="form-check-label" for="q6b">&lt;legend&gt; en cada campo</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6c" value="c"><label class="form-check-label" for="q6c">&lt;label&gt; + atributos for/id</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q6" id="q6d" value="d"><label class="form-check-label" for="q6d">Solo aria-label</label></div>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">7) ¿Qué metadato establece la URL preferida de una página?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7a" value="a" required><label class="form-check-label" for="q7a">meta keywords</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7b" value="b"><label class="form-check-label" for="q7b">meta robots</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7c" value="c"><label class="form-check-label" for="q7c">meta viewport</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q7" id="q7d" value="d"><label class="form-check-label" for="q7d">&lt;link rel="canonical"&gt;</label></div>
+          </div></div>
+
+          <div class="card"><div class="card-body">
+            <p class="fw-semibold">8) ¿Qué elemento añade subtítulos a &lt;video&gt;?</p>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8a" value="a" required><label class="form-check-label" for="q8a">&lt;source&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8b" value="b"><label class="form-check-label" for="q8b">&lt;track&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8c" value="c"><label class="form-check-label" for="q8c">&lt;figcaption&gt;</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" name="q8" id="q8d" value="d"><label class="form-check-label" for="q8d">&lt;details&gt;</label></div>
+          </div></div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-1"></i>Calificar</button>
+            <button type="button" id="resetHtmlTest" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left me-1"></i>Reiniciar respuestas</button>
+          </div>
+          <div id="testResult" class="alert d-none mt-3" role="alert"></div>
+        </form>
+      </section>
+    </div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('htmlTest');
+      const resultEl = document.getElementById('testResult');
+      const resetBtn = document.getElementById('resetHtmlTest');
+      if (!form) return;
+      const answers = { q1: 'b', q2: 'b', q3: 'c', q4: 'd', q5: 'b', q6: 'c', q7: 'd', q8: 'b' };
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const total = Object.keys(answers).length;
+        let correct = 0;
+        for (const key of Object.keys(answers)) {
+          const sel = form.querySelector(`input[name="${key}"]:checked`);
+          if (sel && sel.value === answers[key]) correct++;
+        }
+        const percent = Math.round((correct / total) * 100);
+        resultEl.classList.remove('d-none', 'alert-success', 'alert-warning');
+        resultEl.classList.add(percent >= 70 ? 'alert-success' : 'alert-warning');
+        resultEl.innerHTML = `<strong>Resultado:</strong> ${correct} / ${total} (${percent}%).`;
+
+        const record = { module: 'HTML', slug: 'html', correct, total, percent, timestamp: new Date().toISOString() };
+        const storeKey = 'moduleResults';
+        const data = JSON.parse(localStorage.getItem(storeKey) || '{}');
+        data['html'] = record;
+        localStorage.setItem(storeKey, JSON.stringify(data));
+      });
+
+      resetBtn?.addEventListener('click', function () {
+        form.reset();
+        resultEl.classList.add('d-none');
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
