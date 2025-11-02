@@ -45,35 +45,57 @@
       </div>
 
       <section id="fundamentos" class="mb-5">
-        <h2 class="h5">Fundamentos: cascada, especificidad y herencia</h2>
+        <h2 class="h5"><i class="fa-solid fa-layer-group text-info me-2"></i>Fundamentos: cascada, especificidad y herencia</h2>
+        <p class="text-info">Vamos a explicarlo como si empezaras hoy: qué regla gana, por qué y cómo verlo en las herramientas del navegador, sin resúmenes crípticos.</p>
         <div class="row gy-3">
-          <div class="col-12 col-lg-6">
+          <div class="col-12 col-lg-7">
             <div class="card bg-light"><div class="card-body">
-              <pre class="mb-0"><code>/* Especificidad: ID &gt; clase &gt; tipo */
-#hero { color: red; }
-.hero { color: blue; }
-section { color: green; }
+              <h3 class="h6 mb-2"><i class="fa-solid fa-list-ol text-secondary me-1"></i>Cómo decide CSS (paso a paso)</h3>
+              <p class="mb-2"><strong>1) Importancia:</strong> una regla con <code>!important</code> gana sobre reglas normales. Úsalo solo si no hay alternativa, porque hace el CSS difícil de mantener.</p>
+              <p class="mb-2"><strong>2) Especificidad:</strong> si no hay <code>!important</code>, gana el selector más “preciso”. Piensa en puntos: <code>inline</code>=1000, <code>#id</code>=100, <code>.clase</code>/<code>[attr]</code>=10, <code>tipo</code> (<code>p</code>, <code>h1</code>)=1.</p>
+              <p class="mb-2"><strong>3) Orden:</strong> a igualdad de especificidad, gana la regla escrita más tarde (la que está “debajo” en el archivo).</p>
+              <p class="mb-2"><strong>4) Herencia:</strong> algunas propiedades (como <code>color</code> y <code>font-family</code>) se heredan a los hijos; otras (<code>margin</code>, <code>border</code>) no.</p>
+            </div></div>
+            <div class="card bg-light mt-3"><div class="card-body">
+              <h3 class="h6 mb-2"><i class="fa-solid fa-flask text-secondary me-1"></i>Ejemplo claro (qué color gana)</h3>
+              <pre class="mb-2"><code>/* CSS */
+p { color: green; }                /* tipo = 1 */
+.highlight { color: blue; }         /* clase = 10 */
+#destacado { color: red; }          /* id = 100 */
+p.highlight { color: purple; }      /* tipo + clase = 11 */
 
-/* Herencia: algunos props heredan (color, font) */
-body { font-family: system-ui; color: #333; }
-main { /* hereda color y font */ }
+/* HTML */
+&lt;p id="destacado" class="highlight"&gt;Texto&lt;/p&gt;
 
-/* Importancia: !important (usa con moderación) */
-.notice { color: orange !important; }</code></pre>
+/* Resultado: color rojo.
+   Razón: el selector por id (#destacado, 100) tiene mayor especificidad que
+   .highlight (10), p (1) y p.highlight (11). */</code></pre>
+              <pre class="mb-0"><code>/* Empate de especificidad: gana la última */
+h1 { color: teal; }     /* 1 */
+h1 { color: orange; }   /* 1 → esta está después, gana: orange */</code></pre>
             </div></div>
           </div>
-          <div class="col-12 col-lg-6">
-            <ul class="mb-0">
-              <li>Cascada: orden de aparición + origen + especificidad + importancia.</li>
-              <li>Evita usar <code>!important</code>; prefiere selectores claros y arquitectura.</li>
-              <li>Resetea estilos con normalización (por ej. modern-normalize) si aplica.</li>
-            </ul>
+          <div class="col-12 col-lg-5">
+            <div class="card bg-light"><div class="card-body">
+              <h3 class="h6 mb-2"><i class="fa-solid fa-seedling text-secondary me-1"></i>Herencia con ejemplo</h3>
+              <pre class="mb-2"><code>/* El color y la fuente se heredan a los hijos */
+body { color: #333; font-family: system-ui; }
+article { /* hereda color y font-family */ }
+article strong { color: inherit; font-weight: 700; }
+article small { color: #666; } /* sobrescribe solo este hijo */</code></pre>
+              <h3 class="h6 mb-2"><i class="fa-solid fa-triangle-exclamation text-secondary me-1"></i>Sobre !important (cuando sí y cuando no)</h3>
+              <pre class="mb-2"><code>.notice { color: orange !important; } /* forzar color (evítalo si puedes) */
+#banner .notice { color: red; }        /* esto NO gana porque !important manda */
+#banner .notice { color: green !important; } /* esto sí gana: misma etiqueta, mayor especificidad + !important */</code></pre>
+              <p class="mb-0 small text-muted">Mejor alternativa: eleva la especificidad con selectores claros o ajusta el orden de carga; deja <code>!important</code> para casos aislados (por ejemplo, estilos de utilidades o estados de emergencia).</p>
+            </div></div>
           </div>
         </div>
       </section>
 
       <section id="box-model" class="mb-5">
-        <h2 class="h5">Box model</h2>
+        <h2 class="h5"><i class="fa-solid fa-box text-secondary me-2"></i>Box model</h2>
+        <p class="text-secondary">Cada elemento es una caja: <strong>contenido</strong> + <strong>padding</strong> + <strong>border</strong> + <strong>margin</strong>. Con <code>box-sizing: border-box</code> el ancho/alto incluyen padding y borde, haciendo los cálculos más intuitivos.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>.card { box-sizing: border-box; /* recomendado */ }
 .box {
@@ -81,17 +103,20 @@ main { /* hereda color y font */ }
   padding: 16px; border: 2px solid #333; margin: 12px;
 }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> El navegador calcula el <em>tamaño usado</em> sumando contenido + padding + border (y separa el margin). <code>border-box</code> cambia la fórmula para que el ancho/alto declarados incluyan padding/borde, evitando desbordes inesperados.</div>
         <ul class="mt-3"><li>Usa <code>box-sizing: border-box</code> para calcular tamaños de forma intuitiva.</li></ul>
       </section>
 
       <section id="unidades" class="mb-5">
-        <h2 class="h5">Unidades y tipografía</h2>
+        <h2 class="h5"><i class="fa-solid fa-text-height text-secondary me-2"></i>Unidades y tipografía</h2>
+        <p class="text-secondary"><code>rem</code> escala desde la fuente raíz; <code>em</code> desde su padre; <code>px</code> es absoluto (CSS pixel); <code>vw/vh</code> miran el viewport. Elige según si necesitas consistencia global o escalado contextual.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>html { font-size: 16px; }
 h1 { font-size: 2rem; /* relativo al root */ }
 p { font-size: 1em; /* relativo al parent */ }
 .box { width: 50vw; height: 40vh; }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>rem</code> usa el <em>computed</em> del tamaño de fuente en <code>:root</code>; <code>em</code> el del elemento padre. Esto permite que la interfaz respete preferencias del usuario y que los componentes escalen de forma predecible.</div>
         <ul class="mt-3">
           <li>Usa <code>rem</code> para tamaños consistentes; <code>em</code> para escalado contextual.</li>
           <li><code>vw/vh</code> dependen del viewport; cuidado con móviles y barras.</li>
@@ -99,41 +124,50 @@ p { font-size: 1em; /* relativo al parent */ }
       </section>
 
       <section id="colores" class="mb-5">
-        <h2 class="h5">Colores y fondos</h2>
+        <h2 class="h5"><i class="fa-solid fa-palette text-primary me-2"></i>Colores y fondos</h2>
+        <p class="text-primary">Usa variables como “tokens” de diseño, evita hardcodear valores y cuida el contraste para legibilidad (ideal ≥ 4.5:1). <code>currentColor</code> hereda el color del texto y simplifica iconos.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>:root { --brand: #0d6efd; }
 .btn-brand { background: var(--brand); color: #fff; }
 .gradient { background: linear-gradient(135deg, #0d6efd, #6610f2); }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Las <em>custom properties</em> se resuelven en tiempo de cálculo y heredan; cambiar <code>:root</code> actualiza todo. <code>currentColor</code> vincula el color del icono al texto, manteniendo consistencia automáticamente.</div>
       </section>
 
       <section id="flexbox" class="mb-5">
-        <h2 class="h5">Flexbox</h2>
+        <h2 class="h5"><i class="fa-solid fa-arrows-left-right text-info me-2"></i>Flexbox</h2>
+        <p class="text-info">Para distribuir y alinear en una sola dimensión (fila o columna). Piensa en “contenedor” y “items”: eje principal y eje cruzado.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>.row { display: flex; flex-direction: row; gap: 12px; }
 .row.center { justify-content: center; align-items: center; }
 .grow { flex: 1; }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Al declarar <code>display:flex</code> creas un <em>flex formatting context</em>; los hijos se convierten en <em>flex items</em>. Las propiedades de justificación y alineación distribuyen el espacio libre en el eje principal y cruzado; <code>gap</code> añade separación real sin márgenes colapsables.</div>
       </section>
 
       <section id="grid" class="mb-5">
-        <h2 class="h5">Grid</h2>
+        <h2 class="h5"><i class="fa-solid fa-table-cells text-info me-2"></i>Grid</h2>
+        <p class="text-info">Para layouts bidimensionales: define columnas y filas, crea áreas y relaciones espaciales. Úsalo cuando Flexbox se quede corto.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .span-2 { grid-column: span 2; }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>display:grid</code> crea un <em>grid formatting context</em>; los hijos se posicionan por líneas y áreas. La unidad <code>fr</code> reparte el espacio sobrante proporcionalmente, y <code>gap</code> define separación sin afectar el tamaño de las celdas.</div>
       </section>
 
       <section id="position" class="mb-5">
-        <h2 class="h5">Posicionamiento</h2>
+        <h2 class="h5"><i class="fa-solid fa-location-dot text-secondary me-2"></i>Posicionamiento</h2>
+        <p class="text-secondary">Controla cómo sale un elemento del flujo normal: <code>sticky</code> para cabeceras pegajosas, <code>absolute</code> para overlays. Evita usarlo para el layout principal.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>.sticky { position: sticky; top: 0; }
 .abs { position: absolute; left: 10px; top: 10px; }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Los elementos <em>posicionados</em> crean nuevos contextos y dejan el flujo (en <code>absolute/fixed</code>), posicionándose respecto al contenedor relevante. <code>sticky</code> alterna entre flujo normal y fijo basado en el scroll.</div>
       </section>
 
       <section id="responsive" class="mb-5">
-        <h2 class="h5">Responsive</h2>
+        <h2 class="h5"><i class="fa-solid fa-mobile-screen-button text-secondary me-2"></i>Responsive</h2>
+        <p class="text-secondary">Adapta el diseño según espacio disponible. Media queries miran el viewport; container queries miran el tamaño del contenedor (mejor para componentes).</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>@media (max-width: 600px) {
   .grid { grid-template-columns: 1fr; }
@@ -144,41 +178,50 @@ p { font-size: 1em; /* relativo al parent */ }
   .card { display: grid; grid-template-columns: 1fr 2fr; }
 }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Las <em>media queries</em> evalúan características del viewport (ancho/alto); las <em>container queries</em> evalúan el tamaño del contenedor, permitiendo componentes que responden a su propio espacio.</div>
       </section>
 
       <section id="variables" class="mb-5">
-        <h2 class="h5">Variables CSS (Custom properties)</h2>
+        <h2 class="h5"><i class="fa-solid fa-code text-secondary me-2"></i>Variables CSS (Custom properties)</h2>
+        <p class="text-secondary">Centraliza tokens (colores, espacio, tamaños) y cambia temas en runtime. Declara globales en <code>:root</code> y sobreescribe por componente.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>:root { --space: 8px; --brand: #0d6efd; }
 .btn { padding: var(--space); background: var(--brand); }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Las variables son parte del modelo de valor de CSS: heredan, se pueden leer y escribir en runtime, y se resuelven tras la cascada, lo que habilita theming dinámico sin recompilar.</div>
       </section>
 
       <section id="pseudo" class="mb-5">
-        <h2 class="h5">Pseudo-clases y pseudo-elementos</h2>
+        <h2 class="h5"><i class="fa-solid fa-asterisk text-secondary me-2"></i>Pseudo-clases y pseudo-elementos</h2>
+        <p class="text-secondary">Estados como <code>:hover</code> y <code>:focus</code> mejoran interacción; pseudo-elementos (<code>::before</code>, <code>::first-line</code>) generan contenido decorativo o tipográfico.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>a:hover { text-decoration: underline; }
 input:focus { outline: 2px solid #0d6efd; }
 p::first-line { font-weight: 600; }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Las <em>pseudo-clases</em> coinciden con estados dinámicos del DOM (hover, focus, checked) sin JavaScript; los <em>pseudo-elementos</em> generan cajas adicionales que se renderizan como parte del elemento.</div>
       </section>
 
       <section id="animaciones" class="mb-5">
-        <h2 class="h5">Transiciones y animaciones</h2>
+        <h2 class="h5"><i class="fa-solid fa-bolt text-warning me-2"></i>Transiciones y animaciones</h2>
+        <p class="text-warning">Anima lo justo: prioriza <code>transform</code> y <code>opacity</code> (GPU), respeta <code>@media (prefers-reduced-motion)</code> y evita loops llamativos.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>.btn { transition: transform .2s ease; }
 .btn:hover { transform: translateY(-2px); }
 @keyframes pulse { 50% { transform: scale(1.05); } }</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <em>Transform</em> y <em>opacity</em> suelen componer en la GPU (evitan <em>layout/paint</em>), haciendo animaciones más suaves y eficientes. Las preferencias del usuario reducen movimiento cuando está activado.</div>
       </section>
 
       <section id="arquitectura" class="mb-5">
-        <h2 class="h5">Arquitectura CSS (BEM)</h2>
+        <h2 class="h5"><i class="fa-solid fa-sitemap text-secondary me-2"></i>Arquitectura CSS (BEM)</h2>
+        <p class="text-secondary">Nombra por bloque–elemento–modificador para separar responsabilidades y evitar selectores profundos. Componentiza estilos y limita alcance.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>.card {} /* bloque */
 .card__title {} /* elemento */
 .card--featured {} /* modificador */</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3"><i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> BEM reduce la necesidad de especificidad alta y el encadenamiento profundo, disminuyendo colisiones y facilitando el reuso de componentes.</div>
         <ul class="mt-3">
           <li>Nombres predecibles; evita selectores demasiado profundos.</li>
           <li>Componentiza estilos; limita alcance y dependencias.</li>
@@ -186,7 +229,8 @@ p::first-line { font-weight: 600; }</code></pre>
       </section>
 
       <section id="buenas" class="mb-5">
-        <h2 class="h5">Buenas prácticas</h2>
+        <h2 class="h5"><i class="fa-solid fa-check text-success me-2"></i>Buenas prácticas</h2>
+        <p class="text-success">Reglas claras para evitar dolor futuro: usa layout moderno, tokens y cuida accesibilidad y performance.</p>
         <ul>
           <li>Prefiere layout con Flexbox/Grid sobre hacks antiguos.</li>
           <li>Usa variables para temas; evita repetir valores.</li>
@@ -196,7 +240,8 @@ p::first-line { font-weight: 600; }</code></pre>
       </section>
 
       <section id="por-que" class="mb-5">
-        <h2 class="h5">Por qué y cuándo usar cada técnica</h2>
+        <h2 class="h5"><i class="fa-solid fa-lightbulb text-warning me-2"></i>Por qué y cuándo usar cada técnica</h2>
+        <p class="text-warning">Guía de decisiones práctica: elige la herramienta que mejor resuelve el problema.</p>
         <ul>
           <li><strong>Flexbox vs Grid:</strong> usa Flexbox para alineación en una dimensión (filas/columnas); Grid para layouts en dos dimensiones (rejillas complejas). Flexbox simplifica distribución y alineación; Grid define áreas y relaciones espaciales.</li>
           <li><strong><code>rem</code> vs <code>px</code>:</strong> <code>rem</code> escala con la preferencia del usuario (accesibilidad). Úsalo para tipografía y espaciamiento global; usa <code>px</code> cuando el pixel físico sea crítico (bordes finos).</li>
@@ -207,7 +252,8 @@ p::first-line { font-weight: 600; }</code></pre>
       </section>
 
       <section id="tradeoffs" class="mb-5">
-        <h2 class="h5">Decisiones y trade-offs</h2>
+        <h2 class="h5"><i class="fa-solid fa-sliders text-secondary me-2"></i>Decisiones y trade-offs</h2>
+        <p class="text-secondary">Cada opción tiene costes: documenta riesgos y el porqué de tus elecciones.</p>
         <ul>
           <li><strong>Resets/normalizaciones:</strong> mejoran consistencia entre navegadores, pero pueden alterar estilos nativos útiles. Aplícalos con criterio y documenta excepciones.</li>
           <li><strong>Unidades de viewport (<code>vh</code>):</strong> pueden fallar en móviles por barras del navegador. Considera unidades modernas (<code>dvh</code>, <code>svh</code>, <code>lvh</code>) cuando estén disponibles.</li>
@@ -218,7 +264,8 @@ p::first-line { font-weight: 600; }</code></pre>
       </section>
 
       <section id="antipatrones" class="mb-5">
-        <h2 class="h5">Antipatrones y errores comunes</h2>
+        <h2 class="h5"><i class="fa-solid fa-triangle-exclamation text-danger me-2"></i>Antipatrones y errores comunes</h2>
+        <p class="text-danger">Evita prácticas que dificultan mantenimiento y accesibilidad: mejor arquitectura que parches rápidos.</p>
         <ul>
           <li>Abusar de <code>!important</code> en lugar de mejorar la arquitectura de selectores.</li>
           <li>Selectores demasiado profundos que acoplan componentes y dificultan el mantenimiento.</li>
@@ -229,7 +276,8 @@ p::first-line { font-weight: 600; }</code></pre>
       </section>
 
       <section id="ejercicios" class="mb-5">
-        <h2 class="h5">Ejercicios</h2>
+        <h2 class="h5"><i class="fa-solid fa-list-check text-primary me-2"></i>Ejercicios</h2>
+        <p class="text-primary">Practica lo aprendido con retos cortos y enfocadas en conceptos clave.</p>
         <ol>
           <li>Maqueta una tarjeta con BEM y variables (color, espacio).</li>
           <li>Crea un layout responsive con Grid (3 columnas → 1 en móvil).</li>
@@ -239,7 +287,8 @@ p::first-line { font-weight: 600; }</code></pre>
       </section>
 
       <section id="test" class="mb-5">
-        <h2 class="h5">Test de evaluación (8 preguntas)</h2>
+        <h2 class="h5"><i class="fa-solid fa-clipboard-check text-primary me-2"></i>Test de evaluación (8 preguntas)</h2>
+        <p class="text-primary">Responde para medir tu comprensión. Se guarda tu resultado en el navegador (localStorage).</p>
         <form id="cssTest" class="vstack gap-3">
           <div class="card"><div class="card-body">
             <p class="fw-semibold">1) ¿Qué determina qué regla se aplica?</p>

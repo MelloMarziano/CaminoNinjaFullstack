@@ -73,6 +73,11 @@
           <li>Define <code>charset</code> UTF-8 y <code>viewport</code> para responsive.</li>
           <li>Elige un único <code>&lt;h1&gt;</code> por página, con jerarquía lógica de títulos.</li>
         </ul>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> El <code>&lt;!doctype html&gt;</code> activa el modo estándar del navegador, evitando comportamientos antiguos (quirks). 
+          <code>lang</code> ayuda a lectores de pantalla y SEO, <code>charset="utf-8"</code> asegura que los caracteres se decodifiquen correctamente y 
+          <code>meta viewport</code> permite un layout adaptable en móviles. Un único <code>&lt;h1&gt;</code> establece un outline claro para navegación y accesibilidad.
+        </div>
       </section>
 
       <section id="guia" class="mb-5">
@@ -180,6 +185,11 @@
             <li>¿La jerarquía de títulos es consistente (sin saltos ilógicos)?</li>
           </ul>
         </div></div>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Los elementos semánticos exponen <em>landmarks</em> y roles nativos (banner, navigation, main, contentinfo) que las tecnologías asistivas usan para saltar por la página. 
+          Encabezados ordenados crean un outline navegable; <code>&lt;article&gt;</code> delimita contenido autocontenido y <code>&lt;aside&gt;</code> separa complementos. 
+          <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> vinculan imagen y leyenda, y <code>&lt;time datetime&gt;</code> añade metadatos legibles por máquinas.
+        </div>
       </section>
 
       <section id="texto" class="mb-5">
@@ -206,6 +216,10 @@
           </div>
         </div>
       </section>
+      <div class="alert alert-info mt-n2 mb-4">
+        <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Usar <code>&lt;strong&gt;</code> y <code>&lt;em&gt;</code> comunica énfasis semántico a lectores de pantalla y motores de búsqueda, no solo estilo. 
+        Los encabezados definen la estructura del contenido; <code>&lt;code&gt;</code> y <code>&lt;pre&gt;</code> preservan contexto técnico y espacios.
+      </div>
 
       <section id="principios" class="mb-5">
         <h2 class="h5"><i class="fa-solid fa-cubes me-2 text-secondary"></i>Principios base de HTML</h2>
@@ -243,6 +257,10 @@
           </div>
         </div>
       </section>
+      <div class="alert alert-info mt-n2 mb-4">
+        <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Los elementos de bloque e inline determinan el flujo y cómo se agrupa el contenido, facilitando un DOM coherente. 
+        Metadatos en <code>&lt;head&gt;</code> (viewport, description, canonical) orientan a navegadores y buscadores para render y SEO correctos.
+      </div>
 
       <section id="primeros-pasos" class="mb-5">
         <h2 class="h5"><i class="fa-solid fa-rocket me-2 text-warning"></i>Primeros pasos: tu primera página</h2>
@@ -279,19 +297,29 @@
           </ul>
         </div></div>
       </section>
+      <div class="alert alert-info mt-n2 mb-4">
+        <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Cargar CSS con <code>&lt;link&gt;</code> y JS con <code>&lt;script type="module"&gt;</code> mantiene separación de capas y evita variables globales. 
+        Rutas bien definidas y estructura de carpetas clara hacen que los assets se resuelvan correctamente en distintos entornos.
+      </div>
 
       <section id="enlaces" class="mb-5">
-        <h2 class="h5">Enlaces</h2>
+        <h2 class="h5"><i class="fa-solid fa-link me-2 text-secondary"></i>Enlaces</h2>
+        <p class="text-secondary">Tipos de enlaces y seguridad al abrir nuevas pestañas.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;a href="/ruta"&gt;Relativo&lt;/a&gt;
 &lt;a href="https://ejemplo.com" target="_blank" rel="noopener"&gt;Externo&lt;/a&gt;
 &lt;a href="mailto:contacto@ejemplo.com"&gt;Email&lt;/a&gt;  &lt;a href="tel:+34123456789"&gt;Teléfono&lt;/a&gt;
 &lt;a href="/archivo.pdf" download&gt;Descargar&lt;/a&gt;</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>&lt;a href&gt;</code> aporta semántica y comportamiento nativo (foco, teclado, historial). 
+          Usar <code>rel="noopener"</code> con <code>target="_blank"</code> evita <em>tabnabbing</em>; <code>mailto</code>/<code>tel</code> delegan en apps del sistema y <code>download</code> guía la descarga.
+        </div>
       </section>
 
       <section id="listas" class="mb-5">
-        <h2 class="h5">Listas</h2>
+        <h2 class="h5"><i class="fa-solid fa-list me-2 text-secondary"></i>Listas</h2>
+        <p class="text-secondary">Estructura semántica para conjuntos ordenados y descripciones.</p>
         <div class="row gy-3">
           <div class="col-12 col-lg-6"><div class="card bg-light"><div class="card-body">
             <pre class="mb-0"><code>&lt;ul&gt;&lt;li&gt;Elemento&lt;/li&gt;&lt;/ul&gt;
@@ -306,9 +334,13 @@
           </div>
         </div>
       </section>
+      <div class="alert alert-info mt-n2 mb-4">
+        <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> y <code>&lt;dl&gt;</code> expresan relaciones y jerarquías que lectores de pantalla aprovechan; usar listas para contenido, no para layout, preserva semántica y accesibilidad.
+      </div>
 
       <section id="imagenes" class="mb-5">
-        <h2 class="h5">Imágenes</h2>
+        <h2 class="h5"><i class="fa-solid fa-image me-2 text-secondary"></i>Imágenes</h2>
+        <p class="text-secondary">Figure, alt, dimensiones, y responsive con srcset/sizes.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;figure&gt;
   &lt;img src="foto.jpg" alt="Descripción significativa" width="600" height="400" loading="lazy"
@@ -317,10 +349,15 @@
 &lt;/figure&gt;</code></pre>
         </div></div>
         <ul class="mt-3"><li>Siempre incluye <code>alt</code>. Usa <code>loading="lazy"</code> para rendimiento.</li></ul>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>srcset</code>/<code>sizes</code> permiten al navegador elegir la imagen óptima según pantalla; 
+          <code>width</code>/<code>height</code> reservan espacio evitando saltos (CLS); <code>alt</code> describe la imagen para accesibilidad y SEO.
+        </div>
       </section>
 
       <section id="tablas" class="mb-5">
-        <h2 class="h5">Tablas</h2>
+        <h2 class="h5"><i class="fa-solid fa-table me-2 text-secondary"></i>Tablas</h2>
+        <p class="text-secondary">Estructura accesible para datos tabulares.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;table&gt;
   &lt;caption&gt;Ventas trimestrales&lt;/caption&gt;
@@ -330,10 +367,15 @@
 &lt;/table&gt;</code></pre>
         </div></div>
         <ul class="mt-3"><li>Usa <code>scope</code> en <code>&lt;th&gt;</code> y <code>&lt;caption&gt;</code> para accesibilidad.</li></ul>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>&lt;caption&gt;</code> da contexto a la tabla; <code>&lt;thead&gt;</code>/<code>&lt;tbody&gt;</code>/<code>&lt;tfoot&gt;</code> 
+          estructuran datos y <code>scope</code> en <code>&lt;th&gt;</code> une cabeceras con celdas, mejorando lectura por tecnología asistiva.
+        </div>
       </section>
 
       <section id="formularios" class="mb-5">
-        <h2 class="h5">Formularios</h2>
+        <h2 class="h5"><i class="fa-solid fa-clipboard-list me-2 text-secondary"></i>Formularios</h2>
+        <p class="text-secondary">Controles nativos, validación y accesibilidad.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;form action="/signup" method="post" autocomplete="on"&gt;
   &lt;fieldset&gt;
@@ -364,10 +406,15 @@
           <li>Valida con atributos nativos (<code>required</code>, <code>pattern</code>, <code>min/max</code>).</li>
           <li>Mejora accesibilidad con <code>aria-describedby</code>, mensajes de error claros.</li>
         </ul>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Asociar <code>&lt;label&gt;</code> con <code>for</code>/<code>id</code> crea una relación accesible; 
+          <code>name</code> define el payload de envío; tipos de <code>&lt;input&gt;</code> activan teclados adecuados en móviles y validación nativa.
+        </div>
       </section>
 
       <section id="multimedia" class="mb-5">
-        <h2 class="h5">Multimedia</h2>
+        <h2 class="h5"><i class="fa-solid fa-photo-film me-2 text-secondary"></i>Multimedia</h2>
+        <p class="text-secondary">Video, audio, pistas de subtítulos y fallbacks.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;video controls width="640" poster="preview.jpg"&gt;
   &lt;source src="video.mp4" type="video/mp4"&gt;
@@ -379,20 +426,28 @@
   &lt;source src="audio.mp3" type="audio/mpeg"&gt;
 &lt;/audio&gt;</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Los elementos nativos <code>&lt;video&gt;</code>/<code>&lt;audio&gt;</code> traen controles accesibles por teclado; 
+          <code>&lt;track&gt;</code> añade subtítulos legibles y <code>&lt;source type&gt;</code> ayuda a elegir el formato compatible.
+        </div>
       </section>
 
       <section id="accesibilidad" class="mb-5">
-        <h2 class="h5">Accesibilidad (A11y)</h2>
+        <h2 class="h5"><i class="fa-solid fa-universal-access me-2 text-secondary"></i>Accesibilidad (A11y)</h2>
         <ul>
           <li>Texto alternativo significativo en imágenes (<code>alt</code>).</li>
           <li>Orden lógico de encabezados y foco; evita tab traps.</li>
           <li>Contraste suficiente; navegación por teclado; roles ARIA cuando sea necesario.</li>
           <li>Usa <code>&lt;label&gt;</code>, <code>&lt;legend&gt;</code>, y descripciones accesibles para formularios.</li>
         </ul>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> La semántica nativa ofrece roles y relaciones que lectores de pantalla consumen. 
+          ARIA complementa cuando no existe un elemento nativo equivalente; el orden de foco y contraste asegurán que más personas puedan usar el sitio.
+        </div>
       </section>
 
       <section id="seo" class="mb-5">
-        <h2 class="h5">SEO y metadatos</h2>
+        <h2 class="h5"><i class="fa-solid fa-magnifying-glass me-2 text-secondary"></i>SEO y metadatos</h2>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;head&gt;
   &lt;title&gt;Título único y descriptivo&lt;/title&gt;
@@ -407,10 +462,14 @@
   &lt;meta name="twitter:card" content="summary_large_image"&gt;
 &lt;/head&gt;</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>&lt;title&gt;</code> y <code>description</code> alimentan snippets; 
+          <code>canonical</code> evita duplicados; metadatos Open Graph/Twitter mejoran la presentación al compartir y <code>robots</code> guía la indexación.
+        </div>
       </section>
 
       <section id="favicons" class="mb-5">
-        <h2 class="h5">Favicons y manifest</h2>
+        <h2 class="h5"><i class="fa-solid fa-icons me-2 text-secondary"></i>Favicons y manifest</h2>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;link rel="icon" href="/favicon.ico" sizes="any"&gt;
 &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
@@ -418,10 +477,15 @@
 &lt;meta name="theme-color" content="#0d6efd"&gt;
 &lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> Proveer favicon en múltiples formatos cubre distintos dispositivos; 
+          <code>theme-color</code> integra color de marca en la UI del navegador y <code>manifest</code> habilita instalación (PWA).
+        </div>
       </section>
 
       <section id="html5-apis" class="mb-5">
-        <h2 class="h5">HTML5 APIs útiles</h2>
+        <h2 class="h5"><i class="fa-solid fa-plug me-2 text-secondary"></i>HTML5 APIs útiles</h2>
+        <p class="text-secondary">Componentes nativos interactivos y elementos con semántica enriquecida.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;details open&gt;
   &lt;summary&gt;Ver más&lt;/summary&gt;
@@ -432,10 +496,14 @@
 &lt;progress value="60" max="100"&gt;&lt;/progress&gt; &lt;meter min="0" max="100" value="40"&gt;&lt;/meter&gt;
 &lt;time datetime="2025-11-02"&gt;2 Nov 2025&lt;/time&gt;</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> y <code>&lt;dialog&gt;</code> gestionan interacción y foco de forma nativa; 
+          <code>&lt;progress&gt;</code>/<code>&lt;meter&gt;</code> comunican estado con semántica y <code>&lt;time&gt;</code> ofrece fechas legibles por máquinas.
+        </div>
       </section>
 
       <section id="microdatos" class="mb-5">
-        <h2 class="h5">Microdatos y JSON-LD (Schema.org)</h2>
+        <h2 class="h5"><i class="fa-solid fa-database me-2 text-secondary"></i>Microdatos y JSON-LD (Schema.org)</h2>
         <p class="text-muted">Preferir JSON-LD en el <code>&lt;head&gt;</code> para datos estructurados.</p>
         <div class="card bg-light"><div class="card-body">
           <pre class="mb-0"><code>&lt;script type="application/ld+json"&gt;{
@@ -446,10 +514,14 @@
   "author": {"@type": "Person", "name": "Tú"}
 }&lt;/script&gt;</code></pre>
         </div></div>
+        <div class="alert alert-info mt-3">
+          <i class="fa-solid fa-lightbulb me-1"></i><strong>Por qué funciona:</strong> JSON‑LD separa presentación de datos estructurados y es el formato preferido por buscadores; 
+          se parsea sin afectar el DOM visual y facilita mantenimiento.
+        </div>
       </section>
 
       <section id="buenas-practicas" class="mb-5">
-        <h2 class="h5">Buenas prácticas</h2>
+        <h2 class="h5"><i class="fa-solid fa-thumbs-up me-2 text-secondary"></i>Buenas prácticas</h2>
         <ul>
           <li>Semántica primero, estilos después; evita el “div soup”.</li>
           <li>Contenido accesible, navegable por teclado y con textos alternativos.</li>
@@ -460,7 +532,7 @@
       </section>
 
       <section id="por-que" class="mb-5">
-        <h2 class="h5">Por qué y cuándo usar cada elemento</h2>
+        <h2 class="h5"><i class="fa-solid fa-circle-question me-2 text-secondary"></i>Por qué y cuándo usar cada elemento</h2>
         <ul>
           <li><strong>Etiquetas semánticas (header/nav/main/section/article):</strong> comunican significado a navegadores, lectores de pantalla y motores de búsqueda; mejoran accesibilidad y SEO. Úsalas para describir estructura real del contenido.</li>
           <li><strong>Enlace vs botón:</strong> usa <code>&lt;a&gt;</code> para navegación (cambia de URL) y <code>&lt;button&gt;</code> para acciones en la misma página (enviar formulario, abrir modal). Esto mantiene expectativas y accesibilidad.</li>
@@ -474,7 +546,7 @@
       </section>
 
       <section id="tradeoffs" class="mb-5">
-        <h2 class="h5">Decisiones y trade-offs</h2>
+        <h2 class="h5"><i class="fa-solid fa-scale-balanced me-2 text-secondary"></i>Decisiones y trade-offs</h2>
         <ul>
           <li><strong>Un solo <code>h1</code> por página vs múltiples:</strong> un <code>h1</code> simple mejora consistencia y SEO; múltiples <code>h1</code> son válidos en HTML5 por sección, pero pueden confundir herramientas. Opta por un <code>h1</code> global y jerarquía clara.</li>
           <li><strong><code>target="_blank"</code>:</strong> mejora UX para enlaces externos, pero conlleva riesgos; usa <code>rel="noopener noreferrer"</code> para seguridad.</li>
@@ -486,7 +558,7 @@
       </section>
 
       <section id="antipatrones" class="mb-5">
-        <h2 class="h5">Antipatrones y errores comunes</h2>
+        <h2 class="h5"><i class="fa-solid fa-triangle-exclamation me-2 text-danger"></i>Antipatrones y errores comunes</h2>
         <ul>
           <li>“Div soup”: estructura sin semántica; dificulta a11y y mantenimiento.</li>
           <li>Usar tablas para layout en vez de CSS; rompe semántica y responsividad.</li>
@@ -499,7 +571,7 @@
       </section>
 
       <section id="validacion" class="mb-5">
-        <h2 class="h5">Validación y herramientas</h2>
+        <h2 class="h5"><i class="fa-solid fa-clipboard-check me-2 text-secondary"></i>Validación y herramientas</h2>
         <ul>
           <li>W3C Validator: valida sintaxis y semántica.</li>
           <li>Lighthouse: accesibilidad, SEO y performance.</li>
@@ -508,7 +580,7 @@
       </section>
 
       <section id="ejercicios" class="mb-5">
-        <h2 class="h5">Ejercicios</h2>
+        <h2 class="h5"><i class="fa-solid fa-dumbbell me-2 text-secondary"></i>Ejercicios</h2>
         <ol>
           <li>Estructura una página con <code>header</code>, <code>nav</code>, <code>main</code>, <code>article</code>, <code>aside</code> y <code>footer</code>.</li>
           <li>Crea un formulario accesible de registro con validación nativa y ayuda contextual.</li>
@@ -523,7 +595,7 @@
       </div>
 
       <section id="teoria" class="mb-5">
-        <h2 class="h5">Teoría esencial</h2>
+        <h2 class="h5"><i class="fa-solid fa-book me-2 text-secondary"></i>Teoría esencial</h2>
         <p>HTML es un lenguaje de marcado orientado a describir la estructura y significado del contenido. La capa de presentación (CSS) y la capa de comportamiento (JS) deben mantenerse separadas para mejorar mantenibilidad y accesibilidad. La semántica adecuada ayuda a los agentes de usuario (navegadores, lectores de pantalla, bots) a interpretar correctamente la información.</p>
         <ul>
           <li>El DOM es el modelo de objetos del documento que el navegador construye a partir del HTML y que JS puede manipular.</li>
@@ -534,7 +606,7 @@
       </section>
 
       <section id="test" class="mb-5">
-        <h2 class="h5">Test de evaluación (8 preguntas)</h2>
+        <h2 class="h5"><i class="fa-solid fa-list-check me-2 text-secondary"></i>Test de evaluación (8 preguntas)</h2>
         <p class="text-muted">Responde y califica tu conocimiento. Se guardará el resultado en tu navegador.</p>
         <form id="htmlTest" class="vstack gap-3">
           <div class="card"><div class="card-body">
